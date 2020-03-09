@@ -20,7 +20,7 @@ The data is already persisted using PVC object and configured to remain by defau
 ```
 eval $(minikube docker-env)
 docker build . -t postgrest:latest
-cd helm-chart;helm install postgrest . --namespace mynamespace
+helm install postgrest . --namespace mynamespace
 ```
 
 Just note both postgres and postgrest ports will be opened in order to interact with other pods in the cluster:

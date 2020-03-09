@@ -14,7 +14,7 @@ This chart can be used in multiple ways, for example a test populating the postg
 * Demo database included in the `postgrest` helm chart initdb scripts (citiy, country, countrylanguage)
 * Postgrest vanilla docker image
 * anon/postgres users created with all privileges (recommended changing permissions once deployed in non dev environments)
-* Default pvc configured for postgresql persistent storage
+* pvc configured for postgresql persistent storage
 
 ### Get started on minikube and helm3
 ```

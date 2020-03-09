@@ -5,7 +5,7 @@ Created this helm chart in order to quickly deploy `postgrest` and helm chart ch
 
 This chart can be used in multiple ways, for example a test populating the postgres DB via `psql` or rest calls to the `postgrest` api and other tests being able to retrieve the data via `REST calls`
 
-The data is already persisted using PVC object and configured to remain by default.
+`postgresql` data is persisted using kubernetes pvc and configured to remain by default (instead of delete using helm delete).
 
 ### Features
 * Using standard `stable/postgresql` and `stable/jenkins` as helm chart child dependency

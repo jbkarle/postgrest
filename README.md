@@ -27,7 +27,6 @@ Just note both postgres and postgrest ports will be opened in order to interact 
 
 ```kubectl -n mynamespace get services```
 ```
-kubectl -n mynamespace get services
 NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)     AGE
 postgrest                       ClusterIP   10.98.28.168     <none>        3000/TCP    10m
 postgrest-jenkins               ClusterIP   10.110.35.16     <none>        8080/TCP    10m

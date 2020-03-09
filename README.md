@@ -49,7 +49,7 @@ postgres=# \dt
 
 (from another pod)
 
-```curl -I http://postgres-postgrest.mynamespace.svc.cluster.local:3000```
+```curl -I http://postgrest.mynamespace.svc.cluster.local:3000```
 ```
 HTTP/1.1 200 OK
 Date: Sat, 07 Mar 2020 14:12:35 GMT
@@ -57,7 +57,7 @@ Server: postgrest/6.0.0 (dd86fe3)
 Content-Type: application/openapi+json; charset=utf-8
 ```
 
-```curl "http://postgres-postgrest.mynamespace.svc.cluster.local:3000/country?select=name,continent,region&name=eq.Estonia"```
+```curl "http://postgrest.mynamespace.svc.cluster.local:3000/country?select=name,continent,region&name=eq.Estonia"```
 ```
 [[{"name":"Estonia","continent":"Europe","region":"Baltic Countries"}]
 ```

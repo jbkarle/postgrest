@@ -1,9 +1,9 @@
 ### Purpose
-Created this repo in order to quickly deploy `postgrest` and extra helm chart child dependencies (and custom config) for dev/test purposes:
+Created this helm chart in order to quickly deploy `postgrest` and helm chart child dependencies as well (and custom config) for dev/test purposes:
 * stable/postgresql
 * stable/jenkins
 
-These services can be used in multiple ways, for example a test populating the postgres DB via `psql` or via `postgrest` api and other tests being able to retrieve the data via `REST calls`
+This chart can be used in multiple ways, for example a test populating the postgres DB via `psql` or rest calls to the `postgrest` api and other tests being able to retrieve the data via `REST calls`
 
 The data is already persisted using PVC object and configured to remain by default.
 

@@ -1,31 +1,39 @@
 ### Purpose
-Created this image in order to quickly deploy a pod service with standard `stable/postgresql` helm chart in the cluster including postgres *and* postgrest services together for dev/test purposes.
+Created this repo in order to quickly deploy `postgrest` and some helm chart child dependencies included in the `values.yaml` config for dev/test purposes:
+* stable/postgresql
+* stable/jenkins
 
 These services can be used in multiple ways, for example a test populating the postgres DB via `psql` or via `postgrest` api and other tests being able to retrieve the data via `REST calls`
 
-If data need to be persisted, a PVC storage can be added into the helm chart for this purpose.
+The data is already persisted using PVC object and configured to remain by default.
 
 ### Features
-* Using standard `stable/postgresql` helm chart but changing to a custom docker image
+* Using standard `stable/postgresql` and `stable/jenkins` as helm chart child dependency
 * Both `postgrest`(3000) and `postgres`(5432) tcp ports exposed to the cluster
-* Demo database included in the `postgres-postgrest` image with multiple tables (citiy, country, countrylanguage)
-* Docker image running as a non root user and based on postgres:9.6 image
-* anon/postgres users created with all privileges (readonly recommended once deployed in non dev environments)
-* Default pvc configured for persistent storage
+* Helm 3 compatible
+* Demo database included in the `postgrest` helm chart initdb scripts (citiy, country, countrylanguage)
+* Postgrest vanilla docker image
+* anon/postgres users created with all privileges (recommended changing permissions once deployed in non dev environments)
+* Default pvc configured for postgresql persistent storage
 
-### Get started on minikube
+### Get started on minikube and helm3
 ```
 eval $(minikube docker-env)
-docker build . -t postgres-postgrest:latest
-helm install stable/postgresql --name postgres-postgrest --namespace mynamespace -f values-prod.yaml
+docker build . -t postgrest:latest
+cd helm-chart;helm install postgrest . --namespace mynamespace
 ```
 
 Just note both postgres and postgrest ports will be opened in order to interact with other pods in the cluster:
 
 ```kubectl -n mynamespace get services```
 ```
-NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-postgres-postgrest   ClusterIP   10.105.192.105   <none>        5432/TCP,3000/TCP   7m1s
+kubectl -n mynamespace get services
+NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)     AGE
+postgrest                       ClusterIP   10.98.28.168     <none>        3000/TCP    10m
+postgrest-jenkins               ClusterIP   10.110.35.16     <none>        8080/TCP    10m
+postgrest-jenkins-agent         ClusterIP   10.106.63.76     <none>        50000/TCP   10m
+postgrest-postgresql            ClusterIP   10.104.167.184   <none>        5432/TCP    10m
+postgrest-postgresql-headless   ClusterIP   None             <none>        5432/TCP    10m
 ```
 
 ```

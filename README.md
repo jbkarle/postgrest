@@ -45,7 +45,7 @@ postgres=# \dt
  public | country         | table | postgres
  public | countrylanguage | table | postgres
  ```
-
+### Testing
 (from another pod)
 
 ```curl -I http://postgrest.mynamespace.svc.cluster.local:3000```

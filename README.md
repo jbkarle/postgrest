@@ -1,5 +1,5 @@
 ### Purpose
-Created this repo in order to quickly deploy `postgrest` and some helm chart child dependencies included in the `values.yaml` config for dev/test purposes:
+Created this repo in order to quickly deploy `postgrest` and extra helm chart child dependencies included in the `values.yaml` config for dev/test purposes:
 * stable/postgresql
 * stable/jenkins
 

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "postgrest.fullname" . }}-init-scripts
+  labels:
+    app: "{{ template "postgrest.name" . }}"
+    chart: "{{ template "postgrest.chart" . }}"
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+    component: "master"
+
+data:
+{{- if and (.Files.Glob "files/docker-entrypoint-initdb.d/*.{sh,sql}") (not .Values.initdbScriptsConfigMap) }}
+{{ (.Files.Glob "files/docker-entrypoint-initdb.d/*.{sh,sql}").AsConfig | indent 2 }}
+{{- end }}

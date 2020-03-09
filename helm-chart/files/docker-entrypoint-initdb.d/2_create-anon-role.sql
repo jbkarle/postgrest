@@ -1,0 +1,16 @@
+echo "anon user rights:"
+psql -U postgres <<-END
+    CREATE USER anon;
+    GRANT USAGE ON SCHEMA public TO anon;
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO anon;
+    GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO anon;
+    GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO anon;
+END
+
+echo "postgres user rights:"
+psql -U postgres <<-END
+    GRANT USAGE ON SCHEMA public TO postgres;
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO postgres;
+    GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO postgres;
+    GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO postgres;
+END
